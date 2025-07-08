@@ -3,11 +3,18 @@ from .models import Apartments
 from .forms import ApartmentsForm
 from django.views.generic import View
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 
 class ApartmentsList(View):
     def get(self, request):
-        apartments = Apartments.objects.all().order_by('-id')
+        query = request.GET.get('q', '')
+        if query:
+            apartments = Apartments.objects.filter(
+                Q(title__icontains=query) | Q(price__icontains=query)
+            )
+        else:
+            apartments = Apartments.objects.all().order_by('-id')
         return render(request, 'apartments_list.html', {'apartments':apartments})
 
 
@@ -41,7 +48,7 @@ class ApartmentsUpdate(View):
         form = ApartmentsForm(request.POST, request.FILES, instance=apartments)
         if form.is_valid():
             form.save()
-            return redirect('apartments_update', apartments.id)
+            return redirect('apartments_detail', apartments.id)
         return render(request, 'apartments_update.html', {'form': form, 'apartments': apartments})
 
 

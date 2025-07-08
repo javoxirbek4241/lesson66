@@ -1,14 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 <head>
-    <title>{{ apartments.name }} - O‘chirish</title>
+    <meta charset="UTF-8">
+    <title>{{ apartments.title }} - O‘chirish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 100px;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ apartments.name }} ni o‘chirishni istaysizmi?</h1>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Ha, o‘chirish</button>
-        <a href="{% url 'apartments_detail' apartments.id %}">Yo‘q, bekor qilish</a>
-    </form>
+    <div class="container bg-white p-4 rounded shadow text-center">
+        <h3 class="text-danger mb-4">🗑️ "{{ apartments.title }}" ni o‘chirishni istaysizmi?</h3>
+        <form method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger me-2">Ha, o‘chirish</button>
+            <a href="{% url 'apartments_detail' apartments.id %}" class="btn btn-secondary">Yo‘q, bekor qilish</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS (ixtiyoriy) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

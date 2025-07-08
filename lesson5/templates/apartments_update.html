@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Yangi kvartira qo‘shish</title>
+    <title>{{ apartments.title }} - Tahrirlash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -20,13 +20,13 @@
 </head>
 <body>
     <div class="container bg-white p-4 rounded shadow-sm">
-        <h2 class="mb-4">🏢 Yangi kvartira qo‘shish</h2>
+        <h2 class="mb-4">{{ apartments.title }} - Tahrirlash</h2>
 
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">💾 Saqlash</button>
-            <a href="{% url 'apartments_list' %}" class="btn btn-secondary ms-2">🔙 Ortga</a>
+            <button type="submit" class="btn btn-success">💾 Yangilash</button>
+            <a href="{% url 'apartments_detail' apartments.id %}" class="btn btn-secondary ms-2">🔙 Ortga</a>
         </form>
     </div>
 
