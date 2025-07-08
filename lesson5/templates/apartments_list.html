@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kvartiralar ro‘yxati</title>
+</head>
+<body>
+    <h1>Kvartiralar</h1>
+    <a href="{% url 'apartments_create' %}">+ Yangi kvartira qo‘shish</a>
+    <ul>
+        {% for apartment in apartments %}
+            <li>
+                <a href="{% url 'apartments_detail' apartment.id %}">{{ apartment.name }}</a>
+                |
+                <a href="{% url 'apartments_update' apartment.id %}">Tahrirlash</a>
+                |
+                <a href="{% url 'apartments_delete' apartment.id %}">O‘chirish</a>
+            </li>
+        {% empty %}
+            <li>Hozircha kvartira yo‘q</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

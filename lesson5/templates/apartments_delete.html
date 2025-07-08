@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ apartments.name }} - O‘chirish</title>
+</head>
+<body>
+    <h1>{{ apartments.name }} ni o‘chirishni istaysizmi?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Ha, o‘chirish</button>
+        <a href="{% url 'apartments_detail' apartments.id %}">Yo‘q, bekor qilish</a>
+    </form>
+</body>
+</html>
