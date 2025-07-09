@@ -33,7 +33,7 @@ class ApartmentsCreate(View):
         form = ApartmentsForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('apartments_create')
+            return redirect('apartments_list')
         return render(request, 'apartments_create.html', {'form':form})
 
 
